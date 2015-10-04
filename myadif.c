@@ -33,7 +33,7 @@ int main(){
 		sscanf(buf,"%s %s %s %ld %s %s",mydate,mytime,mycall,&myfreq,myrst_sent,myrst_rcvd);
 		fprintf(fpout,"<qso_date:%lu>%s\n",strlen(mydate),mydate);
 		fprintf(fpout,"<time_on:%lu>%s\n",strlen(mytime),mytime);
-		myproc=strchr(mycall,'!);
+		myproc=strchr(mycall,33);
 		if(myproc!=NULL){
 			*myproc='\0';
 			switch(*(myproc+1)){
