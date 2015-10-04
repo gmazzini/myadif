@@ -37,13 +37,13 @@ int main(){
 		if(myproc!=NULL){
 			*myproc='\0';
 			switch(*(myproc+1)){
-				case s:
+				case 's':
 				fprintf(fpout,"<qsl_sent:1>Y\n");
 				break;
-				case r:
+				case 'r':
 				fprintf(fpout,"<qsl_rcvd:1>Y\n");
 				break;
-				case b:
+				case 'b':
 				fprintf(fpout,"<qsl_sent:1>Y\n");
 				fprintf(fpout,"<qsl_rcvd:1>Y\n");
 				break;
