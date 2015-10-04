@@ -1,6 +1,7 @@
 // myadif v0.1 by GM 2015
 
 #include "stdio.h"
+#include "string.h"
 #define login "/Users/gmazzini/Downloads/log.txt"
 #define logout "/Users/gmazzini/Downloads/log.adif"
 
