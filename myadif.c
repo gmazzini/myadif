@@ -2,6 +2,8 @@
 
 #include "stdio.h"
 #include "string.h"
+#include "stdlib.h"
+
 #define login "/Users/gmazzini/Downloads/log.txt"
 #define logout "/Users/gmazzini/Downloads/log.adif"
 
