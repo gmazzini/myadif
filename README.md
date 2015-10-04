@@ -1,12 +1,14 @@
 # myadif
 
-specification http://www.adif.org.uk/304/ADIF_304.htm
-
 use: myadif 
 
-read file /Users/gmazzini/Downloads/log.txt
+input: /Users/gmazzini/Downloads/log.txt
 
-output adif /Users/gmazzini/Downloads/log.adif
+input specification: yyyymmdd hhmm call freq(in KHz) rst_sent rst_rcvd
+
+output: /Users/gmazzini/Downloads/log.adif
+
+output specification: http://www.adif.org.uk/304/ADIF_304.htm
 
 compile: gcc -Wunused -o myadif myadif.c
 
