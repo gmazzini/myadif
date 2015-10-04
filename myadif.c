@@ -12,6 +12,7 @@ int main(){
 	int i;
 	long myfreq;
 	char buf[100],mydate[100],mytime[100],mycall[100],myrst_sent[100],myrst_rcvd[100];
+	char *myproc;
 	long startband[11]={1830,3500,7000,10100,14000,18068,21000,24890,28000,50000,144000};
 	long endband[11]={1850,3800,7200,10150,14350,18168,21450,24990,29700,51000,146000};
 	char *nameband[11]={"160m","80m","40m","30m","20m","17m","15m","12m","10m","6m","2m"};
@@ -32,6 +33,25 @@ int main(){
 		sscanf(buf,"%s %s %s %ld %s %s",mydate,mytime,mycall,&myfreq,myrst_sent,myrst_rcvd);
 		fprintf(fpout,"<qso_date:%lu>%s\n",strlen(mydate),mydate);
 		fprintf(fpout,"<time_on:%lu>%s\n",strlen(mytime),mytime);
+		myproc=strchr(mycall,'!);
+		if(myproc!=NULL){
+			*myproc='\0';
+			switch(*(myproc+1)){
+				case s:
+				fprintf(fpout,"<qsl_sent:1>Y\n");
+				break;
+				case r:
+				fprintf(fpout,"<qsl_rcvd:1>Y\n");
+				break;
+				case b:
+				fprintf(fpout,"<qsl_sent:1>Y\n");
+				fprintf(fpout,"<qsl_rcvd:1>Y\n");
+				break;
+				default:
+				printf("unknown status for call %s\n",mycall);
+				exit(-1);
+			}
+		}
 		fprintf(fpout,"<call:%lu>%s\n",strlen(mycall),mycall);
 		fprintf(fpout,"<qso_date:%lu>%s\n",strlen(mydate),mydate);
 		fprintf(fpout,"<rst_sent:%lu>%s\n",strlen(myrst_sent),myrst_sent);
