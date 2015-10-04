@@ -45,7 +45,7 @@ int main(){
 			exit(-1);
 		}
 		fprintf(fpout,"<band:%lu>%s\n",strlen(nameband[i]),nameband[i]);
-		sprintf(buf,"%8.4f",((double)myfreq)/1000);
+		sprintf(buf,"%.3f",((double)myfreq)/1000);
 		fprintf(fpout,"<freq:%lu>%s\n",strlen(buf),buf);
 		fprintf(fpout,"<eor>\n");
 		fprintf(fpout,"\n");
