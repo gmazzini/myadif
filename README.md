@@ -6,7 +6,10 @@ input: /Users/gmazzini/Downloads/log.txt
 
 input specification: yyyymmdd hhmm call freq(in KHz) rst_sent rst_rcvd
 
-optionally at the end of the call you can put [S] for qsl sent, [R] for qsl received, [SR] for sql sent and received
+optionally, at the end of the call, you can put:
+!s for qsl sent, 
+!r for qsl received,
+!b for sql sent and received.
 
 output: /Users/gmazzini/Downloads/log.adif
 
