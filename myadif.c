@@ -26,7 +26,7 @@ int main(){
 	// log processing
 	for(;;){
 		if(fgets(buf,100,fpin)==NULL)break;
-		fscanf(buf,"%s %s %s %ld %s %s",mydate,mytime,mycall,myfreq,myrst_sent,myrst_rcvd);
+		sscanf(buf,"%s %s %s %ld %s %s",mydate,mytime,mycall,&myfreq,myrst_sent,myrst_rcvd);
 		fprintf(fpout,"<qso_date:%d>%s\n",strlen(mydate),mydate);
 		fprintf(fpout,"<time_on:%d>%s\n",strlen(mytime),mytime);
 		fprintf(fpout,"<call:%d>%s\n",strlen(mycall),mycall);
