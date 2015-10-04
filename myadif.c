@@ -28,12 +28,12 @@ int main(){
 	for(;;){
 		if(fgets(buf,100,fpin)==NULL)break;
 		sscanf(buf,"%s %s %s %ld %s %s",mydate,mytime,mycall,&myfreq,myrst_sent,myrst_rcvd);
-		fprintf(fpout,"<qso_date:%d>%s\n",strlen(mydate),mydate);
-		fprintf(fpout,"<time_on:%d>%s\n",strlen(mytime),mytime);
-		fprintf(fpout,"<call:%d>%s\n",strlen(mycall),mycall);
-		fprintf(fpout,"<qso_date:%d>%s\n",strlen(mydate),mydate);
-		fprintf(fpout,"<rst_sent:%d>%s\n",strlen(myrst_sent),myrst_sent);
-		fprintf(fpout,"<rst_rcvd:%d>%s\n",strlen(myrst_rcvd),myrst_rcvd);
+		fprintf(fpout,"<qso_date:%lu>%s\n",strlen(mydate),mydate);
+		fprintf(fpout,"<time_on:%lu>%s\n",strlen(mytime),mytime);
+		fprintf(fpout,"<call:%lu>%s\n",strlen(mycall),mycall);
+		fprintf(fpout,"<qso_date:%lu>%s\n",strlen(mydate),mydate);
+		fprintf(fpout,"<rst_sent:%lu>%s\n",strlen(myrst_sent),myrst_sent);
+		fprintf(fpout,"<rst_rcvd:%lu>%s\n",strlen(myrst_rcvd),myrst_rcvd);
 		fprintf(fpout,"<mode:3>ssb\n");
 		for(i=0;i<11;i++){
 			if(myfreq>=startband[i]&&myfreq<=endband[i])break;
@@ -42,9 +42,9 @@ int main(){
 			printf("unknown freq for call %s\n",mycall);
 			exit(-1);
 		}
-		fprintf(fpout,"<band:%d>%s\n",strlen(nameband[i]),nameband[i]);
+		fprintf(fpout,"<band:%lu>%s\n",strlen(nameband[i]),nameband[i]);
 		sprintf(buf,"%8.4f",((double)myfreq)/1000);
-		fprintf(fpout,"<freq:%d>%s\n",strlen(buf),buf);
+		fprintf(fpout,"<freq:%lu>%s\n",strlen(buf),buf);
 		fprintf(fpout,"<eor>\n");
 		fprintf(fpout,"\n");
 	}
