@@ -1,17 +1,20 @@
-// myadif v0.1 by GM 2015
+// myadif by GM 2015
+// v0.1 basic build
+// v0.2 change basic directonry and conversion to upper case
 
 #include "stdio.h"
 #include "string.h"
 #include "stdlib.h"
+#include "ctype.h"
 
-#define login "/Users/gmazzini/Downloads/log.txt"
-#define logout "/Users/gmazzini/Downloads/log.adif"
+#define login "/Users/gmazzini/hamradio/log.txt"
+#define logout "/Users/gmazzini/hamradio/log.adif"
 
 int main(){
 	FILE *fpin,*fpout;
 	int i;
 	long myfreq;
-	char buf[100],mydate[100],mytime[100],mycall[100],myrst_sent[100],myrst_rcvd[100];
+	char auxbuf[100],buf[100],mydate[100],mytime[100],mycall[100],myrst_sent[100],myrst_rcvd[100];
 	char *myproc;
 	long startband[11]={1830,3500,7000,10100,14000,18068,21000,24890,28000,50000,144000};
 	long endband[11]={1850,3800,7200,10150,14350,18168,21450,24990,29700,51000,146000};
@@ -29,7 +32,8 @@ int main(){
 	
 	// log processing
 	for(;;){
-		if(fgets(buf,100,fpin)==NULL)break;
+		if(fgets(auxbuf,100,fpin)==NULL)break;
+		but=toupper(auxbuf);
 		sscanf(buf,"%s %s %s %ld %s %s",mydate,mytime,mycall,&myfreq,myrst_sent,myrst_rcvd);
 		fprintf(fpout,"<qso_date:%lu>%s\n",strlen(mydate),mydate);
 		fprintf(fpout,"<time_on:%lu>%s\n",strlen(mytime),mytime);
@@ -37,13 +41,13 @@ int main(){
 		if(myproc!=NULL){
 			*myproc='\0';
 			switch(*(myproc+1)){
-				case 's':
+				case 'S':
 				fprintf(fpout,"<qsl_sent:1>Y\n");
 				break;
-				case 'r':
+				case 'R':
 				fprintf(fpout,"<qsl_rcvd:1>Y\n");
 				break;
-				case 'b':
+				case 'B':
 				fprintf(fpout,"<qsl_sent:1>Y\n");
 				fprintf(fpout,"<qsl_rcvd:1>Y\n");
 				break;
