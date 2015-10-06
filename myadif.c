@@ -33,7 +33,7 @@ int main(){
 	// log processing
 	for(;;){
 		if(fgets(auxbuf,100,fpin)==NULL)break;
-		but=toupper(auxbuf);
+		buf=toupper(auxbuf);
 		sscanf(buf,"%s %s %s %ld %s %s",mydate,mytime,mycall,&myfreq,myrst_sent,myrst_rcvd);
 		fprintf(fpout,"<qso_date:%lu>%s\n",strlen(mydate),mydate);
 		fprintf(fpout,"<time_on:%lu>%s\n",strlen(mytime),mytime);
