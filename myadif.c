@@ -14,7 +14,7 @@ int main(){
 	FILE *fpin,*fpout;
 	int i;
 	long myfreq;
-	char auxbuf[100],buf[100],mydate[100],mytime[100],mycall[100],myrst_sent[100],myrst_rcvd[100];
+	char buf[100],mydate[100],mytime[100],mycall[100],myrst_sent[100],myrst_rcvd[100];
 	char *myproc;
 	long startband[11]={1830,3500,7000,10100,14000,18068,21000,24890,28000,50000,144000};
 	long endband[11]={1850,3800,7200,10150,14350,18168,21450,24990,29700,51000,146000};
@@ -32,8 +32,8 @@ int main(){
 	
 	// log processing
 	for(;;){
-		if(fgets(auxbuf,100,fpin)==NULL)break;
-		buf=toupper(auxbuf);
+		if(fgets(buf,100,fpin)==NULL)break;
+		for(i=strlen(buf)-1;i>=0;i--)buf[i]=toupper(buf[i]);
 		sscanf(buf,"%s %s %s %ld %s %s",mydate,mytime,mycall,&myfreq,myrst_sent,myrst_rcvd);
 		fprintf(fpout,"<qso_date:%lu>%s\n",strlen(mydate),mydate);
 		fprintf(fpout,"<time_on:%lu>%s\n",strlen(mytime),mytime);
