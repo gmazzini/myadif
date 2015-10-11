@@ -60,7 +60,7 @@ int main(){
 		fprintf(fpout,"<rst_sent:%lu>%s\n",strlen(myrst_sent),myrst_sent);
 		fprintf(fpout,"<rst_rcvd:%lu>%s\n",strlen(myrst_rcvd),myrst_rcvd);
 		fprintf(fpout,"<mode:3>ssb\n");
-		if(myfreq[0]='m'){
+		if(myfreq[0]=='m'){
 			auxi=myfreq+1;
 			auxe=strchr(auxi,'_');
 			*auxe='\0';
