@@ -69,14 +69,14 @@ int main(){
 		else {
 			lmyfreq=atol(myfreq);
 			for(i=0;i<11;i++){
-				if(myfreq>=startband[i]&&myfreq<=endband[i])break;
+				if(lmyfreq>=startband[i]&&lmyfreq<=endband[i])break;
 			}
 			if(i==11){
 				printf("unknown freq for call %s\n",mycall);
 				exit(-1);
 			}
 			fprintf(fpout,"<band:%lu>%s\n",strlen(nameband[i]),nameband[i]);
-			sprintf(buf,"%.3f",((double)myfreq)/1000);
+			sprintf(buf,"%.3f",((double)lmyfreq)/1000);
 			fprintf(fpout,"<freq:%lu>%s\n",strlen(buf),buf);
 		}
 		fprintf(fpout,"<eor>\n");
