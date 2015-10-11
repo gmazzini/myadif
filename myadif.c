@@ -64,12 +64,12 @@ int main(){
 			auxi=myfreq+1;
 			auxe=strchr(auxi,'_');
 			*auxe='\0';
-			fprintf(fpout,"<band:%s>%s\n",strlen(auxi),auxi);
+			fprintf(fpout,"<band:%lu>%s\n",strlen(auxi),auxi);
 			if(*(auxe+1)=='C'){
 				auxi=auxe+2;
 				auxe=strchr(auxi,'_');
 				*auxe='\0';
-				fprintf(fpout,"<src_string:%s>%s\n",strlen(auxi),auxi);
+				fprintf(fpout,"<src_string:%lu>%s\n",strlen(auxi),auxi);
 			}
 		}
 		else {
