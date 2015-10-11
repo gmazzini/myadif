@@ -64,7 +64,7 @@ int main(){
 			auxi=myfreq+1;
 			auxe=strchr(auxi,'_');
 			*auxe='\0';
-			fprintf(fpout,"<band:%lu>%s\n",strlen(auxi),auxi);
+			fprintf(fpout,"<band:%lu>%sm\n",strlen(auxi)+1,auxi);
 			if(*(auxe+1)=='C'){
 				auxi=auxe+2;
 				auxe=strchr(auxi,'_');
