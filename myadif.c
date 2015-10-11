@@ -14,7 +14,7 @@ int main(){
 	FILE *fpin,*fpout;
 	int i;
 	char buf[100],mydate[100],mytime[100],mycall[100],myrst_sent[100],myrst_rcvd[100],myfreq[100];
-	char *myproc;
+	char *myproc,*auxi,*auxe;
 	long lmyfreq;
 	long startband[11]={1830,3500,7000,10100,14000,18068,21000,24890,28000,50000,144000};
 	long endband[11]={1850,3800,7200,10150,14350,18168,21450,24990,29700,51000,146000};
