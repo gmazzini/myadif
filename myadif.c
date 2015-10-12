@@ -1,14 +1,15 @@
 // myadif by GM 2015
 // v0.1 basic build
-// v0.2 change basic directonry and conversion to upper case
+// v0.2 change basic directory and conversion to upper case
+// v0.3 introduction frequecy flag for contest  
 
 #include "stdio.h"
 #include "string.h"
 #include "stdlib.h"
 #include "ctype.h"
 
-#define login "/Users/gmazzini/hamradio/log.txt"
-#define logout "/Users/gmazzini/hamradio/log.adif"
+#define login "./log.txt"
+#define logout "./log.adif"
 
 int main(){
 	FILE *fpin,*fpout;
