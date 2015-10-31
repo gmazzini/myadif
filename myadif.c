@@ -2,7 +2,8 @@
 // v0.1 basic build
 // v0.2 change basic directory and conversion to upper case
 // v0.3 introduction frequecy flag for contest
-// v0.4  
+// v0.4 add - for qso_date and for freq
+// v0.5 add A for ARQ mode and R for RTTY mode in front of rst_sent
 
 #include "stdio.h"
 #include "string.h"
@@ -15,9 +16,9 @@
 int main(){
   FILE *fpin,*fpout;
   int i;
-  char buf[100],mydate[100],mytime[100],mycall[100],myrst_sent[100],myrst_rcvd[100],myfreq[100];
+  char buf[100],mydate[100],mytime[100],mycall[100],myrst_sent[100],myrst_rcvd[100],myfreq[100],mode[100];
   char oldmydate[100],oldmyfreq[100];
-  char *myproc,*auxi,*auxe;
+  char *myproc,*auxi,*auxe,*aux_myrst_sent;
   long lmyfreq;
   long startband[11]={1830,3500,7000,10100,14000,18068,21000,24890,28000,50000,144000};
   long endband[11]={1850,3800,7200,10150,14350,18168,21450,24990,29700,51000,146000};
@@ -62,6 +63,16 @@ int main(){
       }
     }
     fprintf(fpout,"<call:%lu>%s\n",strlen(mycall),mycall);
+    strcpy(mode,"ssb");
+    aux_myrst_sent=myrst_sent;
+    if(myrst_sent[0]=='A'){
+      stcpy(mode,"arq");
+      aux_myrst_sent++;
+    }
+    if(myrst_sent[0]=='R'){
+      strcpy(mode,"rtty");
+      aux_myrst_sent++;
+    }
     fprintf(fpout,"<rst_sent:%lu>%s\n",strlen(myrst_sent),myrst_sent);
     fprintf(fpout,"<rst_rcvd:%lu>%s\n",strlen(myrst_rcvd),myrst_rcvd);
     fprintf(fpout,"<mode:3>ssb\n");
