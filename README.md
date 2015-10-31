@@ -6,6 +6,10 @@ input: /Users/gmazzini/Downloads/log.txt
 
 input specification: yyyymmdd hhmm call freq(in KHz) rst_sent rst_rcvd
 
+note that "-" in yyyymmdd report the date of last qso
+
+note that "-" in freq report the frequency of last qso
+
 optionally, at the end of the call, you can put:
 !s for qsl sent, 
 !r for qsl received,
