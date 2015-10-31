@@ -10,7 +10,7 @@ note that "-" in yyyymmdd report the date of last qso
 
 note that "-" in freq report the frequency of last qso
 
-note that in freq instead of the frequenty in KHz you can simply enter Mxx, to just indicate the band in meters xx, quite useful for contest without indication redarding frequency
+note that for contest operation it is possibile to enter in freq the string Mxxx_Czzz to indicate the band in meters xxx and the contest name zzz
 
 optionally, at the end of the call, you can put:
 !s for qsl sent, 
