@@ -6,9 +6,13 @@ input: /Users/gmazzini/Downloads/log.txt
 
 input specification: yyyymmdd hhmm call freq(in KHz) rst_sent rst_rcvd
 
-note that "-" in yyyymmdd report the date of last qso
+with "-" in yyyymmdd the date is set to the last qso
 
-note that "-" in freq report the frequency of last qso
+with "-" in freq the frequency is set to the last qso
+
+with A in front of rst_sent the mode is set to ARQ
+
+with R in front of sst_sent the mode is set to RTTY
 
 note that for contest operation it is possibile to enter in freq the string Mxxx_Czzz to indicate the band in meters xxx and the contest name zzz
 
