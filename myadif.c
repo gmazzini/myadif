@@ -1,7 +1,8 @@
 // myadif by GM 2015
 // v0.1 basic build
 // v0.2 change basic directory and conversion to upper case
-// v0.3 introduction frequecy flag for contest  
+// v0.3 introduction frequecy flag for contest
+// v0.4  
 
 #include "stdio.h"
 #include "string.h"
