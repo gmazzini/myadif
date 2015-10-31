@@ -28,74 +28,74 @@ int main(){
   fpout=fopen(logout,"wt");
   
   // header
-	fprintf(fpout,"<adif_ver:5>3.0.4\n");
-	fprintf(fpout,"<programid:6>ik4lzh\n");
-	fprintf(fpout,"<eoh>\n");
-	fprintf(fpout,"\n");
-	
-	// log processing
-	for(;;){
-		if(fgets(buf,100,fpin)==NULL)break;
-		for(i=strlen(buf)-1;i>=0;i--)buf[i]=toupper(buf[i]);
-		sscanf(buf,"%s %s %s %s %s %s",mydate,mytime,mycall,myfreq,myrst_sent,myrst_rcvd);
-		if(mydate[0]=='-')strcpy(mydate,oldmydate);
-		fprintf(fpout,"<qso_date:%lu>%s\n",strlen(mydate),mydate);
-		strcpy(oldmydate,mydate);
-		fprintf(fpout,"<time_on:%lu>%s\n",strlen(mytime),mytime);
-		myproc=strchr(mycall,33);
-		if(myproc!=NULL){
-			*myproc='\0';
-			switch(*(myproc+1)){
-				case 'S':
-				fprintf(fpout,"<qsl_sent:1>Y\n");
-				break;
-				case 'R':
-				fprintf(fpout,"<qsl_rcvd:1>Y\n");
-				break;
-				case 'B':
-				fprintf(fpout,"<qsl_sent:1>Y\n");
-				fprintf(fpout,"<qsl_rcvd:1>Y\n");
-				break;
-				default:
-				printf("unknown status for call %s\n",mycall);
-				exit(-1);
-			}
-		}
-		fprintf(fpout,"<call:%lu>%s\n",strlen(mycall),mycall);
-		fprintf(fpout,"<rst_sent:%lu>%s\n",strlen(myrst_sent),myrst_sent);
-		fprintf(fpout,"<rst_rcvd:%lu>%s\n",strlen(myrst_rcvd),myrst_rcvd);
-		fprintf(fpout,"<mode:3>ssb\n");
-		if(myfreq[0]=='-')strcpy(myfreq,oldmyfreq);
-		if(myfreq[0]=='M'){
-			auxi=myfreq+1;
-			auxe=strchr(auxi,'_');
-			*auxe='\0';
-			fprintf(fpout,"<band:%lu>%sm\n",strlen(auxi)+1,auxi);
-			if(*(auxe+1)=='C'){
-				auxi=auxe+2;
-				auxe=strchr(auxi,'_');
-				*auxe='\0';
-				fprintf(fpout,"<src_string:%lu>%s\n",strlen(auxi),auxi);
-			}
-		}
-		else {
-			lmyfreq=atol(myfreq);
-			for(i=0;i<11;i++){
-				if(lmyfreq>=startband[i]&&lmyfreq<=endband[i])break;
-			}
-			if(i==11){
-				printf("unknown freq for call %s\n",mycall);
-				exit(-1);
-			}
-			fprintf(fpout,"<band:%lu>%s\n",strlen(nameband[i]),nameband[i]);
-			sprintf(buf,"%.3f",((double)lmyfreq)/1000);
-			fprintf(fpout,"<freq:%lu>%s\n",strlen(buf),buf);
-		}
-		strcpy(myfreq,oldmyfreq);
-		fprintf(fpout,"<eor>\n");
-		fprintf(fpout,"\n");
-	}
-	
-	fclose(fpin);
-	fclose(fpout);
+  fprintf(fpout,"<adif_ver:5>3.0.4\n");
+  fprintf(fpout,"<programid:6>ik4lzh\n");
+  fprintf(fpout,"<eoh>\n");
+  fprintf(fpout,"\n");
+  
+  // log processing
+  for(;;){
+    if(fgets(buf,100,fpin)==NULL)break;
+    for(i=strlen(buf)-1;i>=0;i--)buf[i]=toupper(buf[i]);
+    sscanf(buf,"%s %s %s %s %s %s",mydate,mytime,mycall,myfreq,myrst_sent,myrst_rcvd);
+    if(mydate[0]=='-')strcpy(mydate,oldmydate);
+    fprintf(fpout,"<qso_date:%lu>%s\n",strlen(mydate),mydate);
+    strcpy(oldmydate,mydate);
+    fprintf(fpout,"<time_on:%lu>%s\n",strlen(mytime),mytime);
+    myproc=strchr(mycall,33);
+    if(myproc!=NULL){
+      *myproc='\0';
+      switch(*(myproc+1)){
+        case 'S':
+        fprintf(fpout,"<qsl_sent:1>Y\n");
+        break;
+        case 'R':
+        fprintf(fpout,"<qsl_rcvd:1>Y\n");
+        break;
+        case 'B':
+        fprintf(fpout,"<qsl_sent:1>Y\n");
+        fprintf(fpout,"<qsl_rcvd:1>Y\n");
+        break;
+        default:
+        printf("unknown status for call %s\n",mycall);
+        exit(-1);
+      }
+    }
+    fprintf(fpout,"<call:%lu>%s\n",strlen(mycall),mycall);
+    fprintf(fpout,"<rst_sent:%lu>%s\n",strlen(myrst_sent),myrst_sent);
+    fprintf(fpout,"<rst_rcvd:%lu>%s\n",strlen(myrst_rcvd),myrst_rcvd);
+    fprintf(fpout,"<mode:3>ssb\n");
+    if(myfreq[0]=='-')strcpy(myfreq,oldmyfreq);
+    if(myfreq[0]=='M'){
+      auxi=myfreq+1;
+      auxe=strchr(auxi,'_');
+      *auxe='\0';
+      fprintf(fpout,"<band:%lu>%sm\n",strlen(auxi)+1,auxi);
+      if(*(auxe+1)=='C'){
+        auxi=auxe+2;
+        auxe=strchr(auxi,'_');
+        *auxe='\0';
+        fprintf(fpout,"<src_string:%lu>%s\n",strlen(auxi),auxi);
+      }
+    }
+    else {
+      lmyfreq=atol(myfreq);
+      for(i=0;i<11;i++){
+        if(lmyfreq>=startband[i]&&lmyfreq<=endband[i])break;
+      }
+      if(i==11){
+        printf("unknown freq for call %s\n",mycall);
+        exit(-1);
+      }
+      fprintf(fpout,"<band:%lu>%s\n",strlen(nameband[i]),nameband[i]);
+      sprintf(buf,"%.3f",((double)lmyfreq)/1000);
+      fprintf(fpout,"<freq:%lu>%s\n",strlen(buf),buf);
+    }
+    strcpy(myfreq,oldmyfreq);
+    fprintf(fpout,"<eor>\n");
+    fprintf(fpout,"\n");
+  }
+  
+  fclose(fpin);
+  fclose(fpout);
 }
