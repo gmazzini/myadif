@@ -66,7 +66,7 @@ int main(){
     strcpy(mode,"ssb");
     aux_myrst_sent=myrst_sent;
     if(myrst_sent[0]=='A'){
-      stcpy(mode,"arq");
+      strcpy(mode,"arq");
       aux_myrst_sent++;
     }
     if(myrst_sent[0]=='R'){
