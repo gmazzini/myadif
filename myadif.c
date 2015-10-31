@@ -91,7 +91,7 @@ int main(){
       sprintf(buf,"%.3f",((double)lmyfreq)/1000);
       fprintf(fpout,"<freq:%lu>%s\n",strlen(buf),buf);
     }
-    strcpy(myfreq,oldmyfreq);
+    strcpy(oldmyfreq,myfreq);
     fprintf(fpout,"<eor>\n");
     fprintf(fpout,"\n");
   }
