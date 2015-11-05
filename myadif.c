@@ -4,6 +4,7 @@
 // v0.3 introduction frequecy flag for contest
 // v0.4 add - for qso_date and for freq
 // v0.5 add A for ARQ mode and R for RTTY mode in front of rst_sent
+// v0.6 add F for FM mode
 
 #include "stdio.h"
 #include "string.h"
@@ -65,13 +66,19 @@ int main(){
     fprintf(fpout,"<call:%lu>%s\n",strlen(mycall),mycall);
     strcpy(mode,"ssb");
     aux_myrst_sent=myrst_sent;
-    if(myrst_sent[0]=='A'){
+    switch(*myrst_sent){
+      case 'A':
       strcpy(mode,"arq");
       aux_myrst_sent++;
-    }
-    if(myrst_sent[0]=='R'){
+      break;
+      case 'R':
       strcpy(mode,"rtty");
       aux_myrst_sent++;
+      break;
+      case 'F':
+      strcpy(mode,"fm");
+      aux_myrst_sent++;
+      break;
     }
     fprintf(fpout,"<rst_sent:%lu>%s\n",strlen(aux_myrst_sent),aux_myrst_sent);
     fprintf(fpout,"<rst_rcvd:%lu>%s\n",strlen(myrst_rcvd),myrst_rcvd);
