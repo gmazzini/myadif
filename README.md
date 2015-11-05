@@ -14,6 +14,8 @@ with A in front of rst_sent the mode is set to ARQ
 
 with R in front of sst_sent the mode is set to RTTY
 
+with F in front of sst_sent the mode is set to FM
+
 note that for contest operation it is possibile to enter in freq the string Mxxx_Czzz to indicate the band in meters xxx and the contest name zzz
 
 optionally, at the end of the call, you can put:
